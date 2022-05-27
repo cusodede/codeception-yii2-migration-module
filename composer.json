@@ -1,14 +1,35 @@
 {
-  "name": "namespace/yii2-migraion-module",
+  "name": "dspl/yii2-migraion-module",
   "description": "Use yii2 migration with codeception",
   "require": {
+      "php": "~8.0",
+      "yiisoft/yii2": ">=2.0.45",
       "codeception/codeception": "^4.1",
-      "codeception/module-cli": "dev-master",
-      "codeception/module-yii2": "^1.1"
+      "codeception/module-yii2": "^1.1",
+      "codeception/module-cli": "dev-master"
   },
   "autoload": {
     "psr-4": {
-      "Codeception\\Module\\": "src"
+      "Codeception\\Module\\": "src\\Codeception",
+      "DSPL\\tools\\traits\\": "src\\dspl\\tools\\traits"
     }
-  }
+  },
+  "config": {
+    "process-timeout": 1800,
+    "fxp-asset": {
+      "enabled": false
+    },
+    "github-protocols": [
+      "https"
+    ],
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
 }
