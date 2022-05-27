@@ -1,0 +1,14 @@
+{
+  "name": "namespace/yii2-migraion-module",
+  "description": "Use yii2 migration with codeception",
+  "require": {
+      "codeception/codeception": "^4.1",
+      "codeception/module-cli": "dev-master",
+      "codeception/module-yii2": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Codeception\\Module\\": "src"
+    }
+  }
+}
