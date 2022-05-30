@@ -1,5 +1,5 @@
 {
-    "name": "dspl/yii2-migraion-module",
+    "name": "dspl/codeception-yii2-migraion-module",
     "description": "Use yii2 migration with codeception",
     "require": {
         "php": "~8.0",
