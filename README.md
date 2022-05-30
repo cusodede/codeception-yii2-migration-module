@@ -1,8 +1,12 @@
 1. Модуль использует следующие модули codeception:
-- codeception/module-cli
-- codeception/module-yii2
-
-2. Авторизация для composer:
+   - codeception/module-cli
+   - codeception/module-yii2
+   
+2. Установка:
+    ```
+   composer require dspl/codeception-yii2-migraion-module --dev
+    ```
+3. Авторизация для composer:
 
     Создаем файл auth.json
     
@@ -26,7 +30,7 @@
     cat /usr/local/share/ca-certificates/git.vimpelcom.ru.pem | tee -a /etc/ssl/certs/ca-certificates.crt
     ```
 
-3. Пример конфига в codeception.yml
+4. Пример конфига в codeception.yml
     ```
     paths:
       tests: tests
@@ -54,7 +58,7 @@
             - ref_legal_forms
             - partner_contractor_activity_roles
     ```
-4. Пример конфига для suites:
+5. Пример конфига для suites:
     ```
     actor: FunctionalTester
     modules:
@@ -66,8 +70,8 @@
             configFile: 'config/test.php'
       step_decorators: ~
     ```
-5. Так же вам надо подключить dspl\tools\traits\MigrationTrait в ваш MigrateController
-6. Опции:
+6. Так же вам надо подключить dspl\tools\traits\MigrationTrait в ваш MigrateController
+7. Опции:
     - populate: 
         Будет дропать бд и накатывать миграции перед запуском suite: unit, functional, console, etc.
     - cleanup: 
