@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace DSPL\tools\traits;
+namespace dspl\tools\traits;
 
 use yii\console\Controller;
 use yii\console\ExitCode;
