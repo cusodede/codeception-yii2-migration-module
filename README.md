@@ -1,5 +1,5 @@
 1. Вам необходимо для этого модуля использовать:
-- codeception/module-cl
+- codeception/module-cli
 - codeception/module-yii2
 
 2. Пример конфига в codeception.yml
