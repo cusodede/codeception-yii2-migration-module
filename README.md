@@ -43,3 +43,10 @@ modules:
   step_decorators: ~
 ```
 4. Так же вам надо подключить dspl\tools\traits\MigrationTrait в ваш MigrateController
+5. Опции:
+    - populate
+        Будет дропать бд и накатывает миграции перед запуском suite: unit, functional, console, etc.
+    - cleanup
+        Чистит таблицы после каждого теста, накатывает миграции (если есть)
+    - excludeClearTables
+        Список таблиц, которые не надо чистит после наката миграций. Это может касаться, например, справочников.
