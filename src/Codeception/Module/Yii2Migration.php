@@ -2,9 +2,8 @@
 namespace Codeception\Module;
 
 use Codeception\Exception\ModuleException;
+use Codeception\Module;
 use InvalidArgumentException;
-use Codeception\Module\Cli;
-use Codeception\Module\Yii2;
 
 /**
  * class MigrationModule
