@@ -68,9 +68,9 @@
     ```
 5. Так же вам надо подключить dspl\tools\traits\MigrationTrait в ваш MigrateController
 6. Опции:
-    - populate
-        Будет дропать бд и накатывает миграции перед запуском suite: unit, functional, console, etc.
-    - cleanup
+    - populate: 
+        Будет дропать бд и накатывать миграции перед запуском suite: unit, functional, console, etc.
+    - cleanup: 
         Чистит таблицы после каждого теста, накатывает миграции (если есть)
-    - excludeClearTables
+    - excludeClearTables: 
         Список таблиц, которые не надо чистит после наката миграций. Это может касаться, например, справочников.
