@@ -55,7 +55,7 @@
             configFile: 'config/test.php'
       step_decorators: ~
     ```
-5. Так же вам надо подключить dspl\tools\traits\MigrationTrait в ваш MigrateController
+5. Так же вам надо подключить tools\traits\MigrationTrait в ваш MigrateController
 6. Опции:
     - populate: 
         Будет дропать бд и накатывать миграции перед запуском suite: unit, functional, console, etc.
