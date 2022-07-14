@@ -53,7 +53,12 @@ class Yii2Migration extends Module {
 		}
 	}
 
-	// Хук: перед началом теста
+	/**
+	 * Хук: перед началом теста
+	 * @param TestCase $test
+	 * @return void
+	 * @throws ModuleException
+	 */
 	public function _before(TestCase $test) {
 		$this->debug('trigger before test');
 		if ($this->_getConfig('cleanup')) {
@@ -91,6 +96,10 @@ class Yii2Migration extends Module {
 		return $this->getModule('Yii2');
 	}
 
+	/**
+	 * @return void
+	 * @throws ModuleException
+	 */
 	protected function up() {
 		$this->getCli()->runShellCommand("{$this->getPhpPath()} {$this->getYiiBinPath()} migrate/up --interactive=0");
 	}
@@ -115,11 +124,19 @@ class Yii2Migration extends Module {
 		$this->getCli()->runShellCommand("{$this->getPhpPath()} {$this->getYiiBinPath()} migrate/clear-tables {$clearTables} --interactive=0");
 	}
 
+	/**
+	 * @return void
+	 * @throws ModuleException
+	 */
 	protected function cleanup():void {
 		$this->up();
 		$this->clearTables();
 	}
 
+	/**
+	 * @return void
+	 * @throws ModuleException
+	 */
 	protected function populate():void {
 		$this->dropTables();
 		$this->up();
