@@ -38,8 +38,7 @@ class Yii2Migration extends Module {
 	}
 
 	/**
-	 * @param $settings
-	 * @return void
+	 * @inheritDoc
 	 * @throws ModuleException
 	 */
 	public function _beforeSuite($settings = []):void {
