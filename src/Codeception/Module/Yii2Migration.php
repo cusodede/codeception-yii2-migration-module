@@ -23,7 +23,7 @@ class Yii2Migration extends Module {
 	 * @return void
 	 * @throws ModuleException
 	 */
-	public function _initialize() {
+	public function _initialize():void {
 		if (null === $this->getCli()) {
 			throw new InvalidArgumentException("You need cli module");
 		}
@@ -42,7 +42,7 @@ class Yii2Migration extends Module {
 	 * @return void
 	 * @throws ModuleException
 	 */
-	public function _beforeSuite($settings = []) {
+	public function _beforeSuite($settings = []):void {
 		$this->debug('trigger before suite');
 		if ($this->_getConfig('populate')) {
 			$this->populate();
@@ -59,7 +59,7 @@ class Yii2Migration extends Module {
 	 * @return void
 	 * @throws ModuleException
 	 */
-	public function _before(TestCase $test) {
+	public function _before(TestCase $test):void {
 		$this->debug('trigger before test');
 		if ($this->_getConfig('cleanup')) {
 			$this->cleanup();
@@ -100,7 +100,7 @@ class Yii2Migration extends Module {
 	 * @return void
 	 * @throws ModuleException
 	 */
-	protected function up() {
+	protected function up():void {
 		$this->getCli()->runShellCommand("{$this->getPhpPath()} {$this->getYiiBinPath()} migrate/up --interactive=0");
 	}
 
