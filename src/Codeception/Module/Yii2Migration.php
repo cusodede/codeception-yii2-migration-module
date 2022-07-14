@@ -81,7 +81,7 @@ class Yii2Migration extends Module {
 	}
 
 	/**
-	 * @return Cli
+	 * @return Cli|Module
 	 * @throws ModuleException
 	 */
 	protected function getCli() {
@@ -89,7 +89,7 @@ class Yii2Migration extends Module {
 	}
 
 	/**
-	 * @return Yii2
+	 * @return Yii2|Module
 	 * @throws ModuleException
 	 */
 	protected function getYii() {
