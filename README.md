@@ -1,3 +1,11 @@
+Почему не используем модуль Db?
+
+В случае модуля db, вам надо делать дамп. Обычно дамп мы делаем с нашей локальной базы, в которой может меняться состояние, например, изменили структуру при помощи миграций или руками, забыли и теперь структура локальной бд отличается от структуры прома. Тесты будут не совсем корректны. 
+
+В случае миграций, они каждый раз будут по-новой накатываться и будут исключать влияние локальных изменений.
+
+В некоторых практиках хранят дамп в самой репе - это скорей всего вкусовые предпочтения, но с другой стороны, с ростом проекта будет быстрее накатить дамп, чем все миграции. Можно переделать создание дампа через команду докера, но опять же, если вы локальные миграции будете накатывать, все равно есть риск, что в локальной базе будут аномалии, хотя ci/cd нас дополнительно защищает.
+
 1. Модуль использует следующие модули codeception:
    - codeception/module-cli
    - codeception/module-yii2
@@ -6,31 +14,8 @@
     ```
    composer require dspl/codeception-yii2-migraion-module --dev
     ```
-3. Авторизация для composer:
-
-    Создаем файл auth.json
-    
-    ```bash
-    composer config gitlab-token.git.vimpelcom.ru <ДОМЕННЫЙ ЛОГИН> <ТОКЕН>
-    ```
-    
-    Решение ошибок
-    
-    > fatal: unable to access '%git repositories%': server certificate verification failed. CAfile: none CRLfile: none
-    
-    Получим сертификат с git.vimpelcom.ru. Выполнять необходимо в контейнере где будет запускаться установка нового пакета
-    
-    ```bash
-    openssl s_client -showcerts -servername git.vimpelcom.ru -connect git.vimpelcom.ru:443 </dev/null 2>/dev/null | sed -n -e '/BEGIN\ CERTIFICATE/,/END\ CERTIFICATE/ p'  > /usr/local/share/ca-certificates/git.vimpelcom.ru.pem
-    ```
-    
-    Добавим полученный сертификат к остальным
-    
-    ```bash
-    cat /usr/local/share/ca-certificates/git.vimpelcom.ru.pem | tee -a /etc/ssl/certs/ca-certificates.crt
-    ```
-
-4. Пример конфига в codeception.yml
+   
+3. Пример конфига в codeception.yml
     ```
     paths:
       tests: tests
@@ -58,7 +43,7 @@
             - ref_legal_forms
             - partner_contractor_activity_roles
     ```
-5. Пример конфига для suites:
+4. Пример конфига для suites:
     ```
     actor: FunctionalTester
     modules:
@@ -70,8 +55,8 @@
             configFile: 'config/test.php'
       step_decorators: ~
     ```
-6. Так же вам надо подключить dspl\tools\traits\MigrationTrait в ваш MigrateController
-7. Опции:
+5. Так же вам надо подключить tools\traits\MigrationTrait в ваш MigrateController
+6. Опции:
     - populate: 
         Будет дропать бд и накатывать миграции перед запуском suite: unit, functional, console, etc.
     - cleanup: 
@@ -79,3 +64,5 @@
     - excludeClearTables: 
         Список таблиц, которые не надо чистить после наката миграций. Это может касаться, например, справочников.
         Так же не надо чистить migration таблицу, в противном случае миграции будут накатывать повторно и выдавать ошибку.
+    - phpPath:
+        По умолчанию, php. На случай, если нужно использовать иной путь или алиас.
