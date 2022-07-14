@@ -3,6 +3,7 @@ namespace Codeception\Module;
 
 use Codeception\Exception\ModuleException;
 use Codeception\Module;
+use Codeception\TestCase;
 use InvalidArgumentException;
 
 /**
@@ -54,7 +55,7 @@ class Yii2Migration extends Module
     }
 
     // Хук: перед началом теста
-    public function _before(\Codeception\TestCase $test) {
+    public function _before(TestCase $test) {
         $this->debug('trigger before test');
         if ($this->_getConfig('cleanup')) {
             $this->cleanup();
